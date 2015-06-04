@@ -9,10 +9,10 @@ function add(form){
     req.open("POST", "/api/cards", false);
 //    req.setRequestHeader('Content-Type', 'application/json');
     req.send(data);
-    if(req.responseText === 'OK'){
+    if(req.responseText === 'ok'){
       alert("登録されました");
       form.reset();
-    } 
+    }
 //    location.reload();
   }
   return false;
