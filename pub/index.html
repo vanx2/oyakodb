@@ -1,0 +1,73 @@
+<html>
+<body>
+<script>
+function add(form){
+  if(confirm("登録します")){
+    var data = new FormData(form);
+    data.append("adddate", Date.now());
+    var req = new XMLHttpRequest();
+    req.open("POST", "/api/cards", false);
+//    req.setRequestHeader('Content-Type', 'application/json');
+    req.send(data);
+    if(req.responseText === 'OK'){
+      alert("登録されました");
+      form.reset();
+    } 
+//    location.reload();
+  }
+  return false;
+}
+</script>
+<form id=card onsubmit="return add(this);">
+<input type=radio name=mtype value=new checked>新規<input type=radio name=mtype value=update>更新<br>
+<p><label for=papaname>お父さん</label><br>
+<label>かな<input name=papakana></label><br>
+<label>名前<input name=papaname></label></p>
+<p><label for=mamaname>お母さん</label><br>
+<label>かな<input name=mamakana></label><br>
+<label>名前<input name=mamaname></label></p>
+<p><label>お子さん1</label><br>
+<label>かな<input name=chd1kana></label><br>
+<label>名前<input name=chd1name></label><br>
+<label><input type=radio name=chd1sex value="1">男</label>
+<label><input type=radio name=chd1sex value="2">女</label><br>
+<input type=tel name=chd1year maxlength=4 pattern="^[12][09][1-9][1-9]$" placeholder=2000 size=4>年
+<input type=tel name=chd1mon maxlength=2 pattern="^([1-9]|1[012])$" placeholder=12 size=2>月
+<input type=tel name=chd1day maxlength=2 pattern="^([1-9]|[12][0-9]|3[01])$" placeholder=30 size=2>日生まれ</p>
+<p><label>お子さん2</label><br>
+<label>かな<input name=chd2kana></label><br>
+<label>名前<input name=chd2name></label><br>
+<label><input type=radio name=chd2sex value="1">男</label>
+<label><input type=radio name=chd2sex value="2">女</label><br>
+<input type=tel name=chd2year maxlength=4 pattern="^[12][09][1-9][1-9]$" placeholder=2000 size=4>年
+<input type=tel name=chd2mon maxlength=2 pattern="^([1-9]|1[012])$" placeholder=12 size=2>月
+<input type=tel name=chd2day maxlength=2 pattern="^([1-9]|[12][0-9]|3[01])$" placeholder=30 size=2>日生まれ</p>
+<p><label>お子さん3</label><br>
+<label>かな<input name=chd3kana></label><br>
+<label>名前<input name=chd3name></label><br>
+<label><input type=radio name=chd3sex value="1">男</label>
+<label><input type=radio name=chd3sex value="2">女</label><br>
+<input type=tel name=chd3year maxlength=4 pattern="^[12][09][1-9][1-9]$" placeholder=2000 size=4>年
+<input type=tel name=chd3mon maxlength=2 pattern="^([1-9]|1[012])$" placeholder=12 size=2>月
+<input type=tel name=chd3day maxlength=2 pattern="^([1-9]|[12][0-9]|3[01])$" placeholder=30 size=2>日生まれ</p>
+<p><label>お子さん4</label><br>
+<label>かな<input name=chd4kana></label><br>
+<label>名前<input name=chd4name></label><br>
+<label><input type=radio name=chd4sex value="1">男</label>
+<label><input type=radio name=chd4sex value="2">女</label><br>
+<input type=tel name=chd4year maxlength=4 pattern="^[12][09][1-9][1-9]$" placeholder=2000 size=4>年
+<input type=tel name=chd4mon maxlength=2 pattern="^([1-9]|1[012])$" placeholder=12 size=2>月
+<input type=tel name=chd4day maxlength=2 pattern="^([1-9]|[12][0-9]|3[01])$" placeholder=30 size=2>日生まれ</p>
+<p>
+住所<input name=address size=50 placeholder="旭町1-1" required><br>
+電話<input type=tel name=tel maxlength=13 pattern="^[0-9]{6,13}$" placeholder="09099991111" required><br>
+備考<input name=comment><br>
+広場の頼りやホームページへの写真掲載に同意
+<input type=radio name=agree value="1" required>する<input type=radio name=agree value="0">しない</p>
+<input type=submit value="登録">
+</form>
+<br>
+<br>
+</body>
+</html>
+

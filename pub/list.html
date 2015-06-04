@@ -1,0 +1,59 @@
+<html>
+<head>
+<script>
+  function renderTable(){
+    var req = new XMLHttpRequest();
+    req.open("GET", "/api/cards", false);
+    req.send();
+    var html = '<table border=1><tbody><tr>'
+    + '<td>削除</td>'
+    + '<td>更新</td>'
+    + '<td>お父さん</td>'
+    + '<td>お母さん</td>'
+    + '<td>お子さん1</td>'
+    + '<td>お子さん2</td>'
+    + '<td>お子さん3</td>'
+    + '<td>お子さん4</td>'
+    + '<td>住所</td>'
+    + '<td>電話</td>'
+    + '<td>同意</td>'
+    + '<td>備考</td>'
+    + '<td>登録日</td>'
+    + '</tr>';
+    JSON.parse(req.responseText).forEach(function(value, index, all){
+      html = html + "<tr>"
+      + "<td><input type=checkbox " + "></td>"
+      + "<td>" + value.mtype + "</td>"
+      + "<td>" + value.papakana + '<br>' + value.papaname + "</td>"
+      + "<td>" + value.mamakana + '<br>' + value.mamaname + "</td>"
+      + "<td>" + ((value.chd1name) ? ( value.chd1kana + '<br>' +value.chd1name +
+        ( (value.chd1sex == 1 ) ? '(男)' : ( (value.chd1sex == 2) ? '(女)' : '' ) ) + '<br>' +
+        value.chd1year + "年" + value.chd1mon + "月" + value.chd1day + "日" ) : '' ) + "</td>"
+      + "<td>" + ((value.chd2name) ? ( value.chd2kana + '<br>' +value.chd2name +  
+        ( (value.chd2sex == 1 ) ? '(男)' : ( (value.chd2sex == 2) ? '(女)' : '' ) ) + '<br>' +
+        value.chd2year + "年" + value.chd2mon + "月" + value.chd2day + "日" ) : '' ) + "</td>"
+      + "<td>" + ((value.chd3name) ? ( value.chd3kana + '<br>' +value.chd3name +
+        ( (value.chd3sex == 1 ) ? '(男)' : ( (value.chd3sex == 2) ? '(女)' : '' ) ) + '<br>' +
+        value.chd3year + "年" + value.chd3mon + "月" + value.chd3day + "日" ) : '' ) + "</td>"
+      + "<td>" + ((value.chd4name) ? ( value.chd4kana + '<br>' +value.chd4name +
+        ( (value.chd4sex == 1 ) ? '(男)' : ( (value.chd4sex == 2) ? '(女)' : '' ) ) + '<br>' +
+        value.chd4year + "年" + value.chd4mon + "月" + value.chd4day + "日" ) : '' ) + "</td>"
+      + "<td>" + value.address + "</td>"
+      + "<td>" + value.tel + "</td>"
+      + "<td>" + ( ( value.agree == 1 ) ? "OK" : "NG" )  + "</td>"
+      + "<td>" + value.comment + "</td>"
+      + "<td>" + Date(value.adddate) + "</td>"
+      + "</tr>";
+    });
+    document.getElementById('cards').innerHTML = html + "</tbody></table>";
+  }
+  window.onload=function(){renderTable()};
+</script>
+</head>
+<body>
+<form>
+<input type=submit value="削除">
+<div id=cards></div>
+</form>
+</body>
+</html>
